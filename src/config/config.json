@@ -263,13 +263,13 @@
     "hidden": true,
     "column": 4
   },
-  "footer": {
-    "text": "© 2020 - 2025 By NayLo",
+  "__footer": {
+    "text": "©2025 By NayLo",
     "url": "https://naylo.cn",
     "ICP": "ICP备xxxxxxxx号",
     "MPSICP": "京公网安备xxxxxxxx号",
     "direction": "col-reverse",
-    "isExternal": false
+    "isExternal": true
   },
   "resources": {
     "css": [],
