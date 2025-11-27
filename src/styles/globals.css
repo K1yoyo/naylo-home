@@ -13,7 +13,8 @@
 }
 
 body {
-  /* color: rgb(var(--foreground-rgb)); */
+  font-family: "PingFang SC", "Microsoft YaHei", "Heiti SC", sans-serif !important;
+
   background: linear-gradient(
       to bottom,
       transparent,
