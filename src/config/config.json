@@ -1,8 +1,8 @@
 {
-  "name": "NayLoの主页✨",
+  "name": "NayLo的主页✨",
   "favicon": "/favicon.ico",
-  "keywords": "remio,rem,mio,C.C.,NayLoの次元,NayLo的个人博客,NayLo,个人主页,主页,个人记录,技术博客,个人生活",
-  "description": "NayLoの次元，兴趣至上，内容随缘，个人主页",
+  "keywords": "NayLo,NayLo的主页,NayLo Blog,二次元,技术博客,个人主页,NayLo的小世界,前端开发,生活记录",
+  "description": "NayLo的小世界",
   "avatarConfig": {
     "src": "https://s2.loli.net/2025/11/28/eO6ktzNHp3nQmGS.jpg",
     "size": 150,
@@ -15,7 +15,7 @@
   },
   "bgConfig": {
     "bg": ["https://s2.loli.net/2025/11/28/Uo46D7xyVWhkNdT.jpg"],
-    "mbg": ["https://s2.loli.net/2024/06/21/59b6eRscAvQWHT1.webp"],
+    "mbg": ["https://s2.loli.net/2025/11/28/PyeMcHvb1LBCDZE.png"],
     "bgStyle": "snow",
     "blur": "",
     "cardOpacity": 0.1,
@@ -45,14 +45,14 @@
     "showFrom": true,
     "style": "desc",
     "gapDelay": 0.05,
-    "content": "Hello💫，这里是NayLoの主页",
+    "content": "Hello💫，这里是NayLo的主页",
     "desc": "欢迎来到我的个人主页，这里记录了我的生活、学习、工作等各方面内容。如果你有任何问题或建议，欢迎随时与我联系。"
   },
   "links": [
     {
       "title": "qq",
       "color": "#dfba00",
-      "url": "https://user.qzone.qq.com/2160403855?loginfrom=2",
+      "url": "tencent://message/?uin=2160403855&Site=NayLo&Menu=yes",
       "icon": "qq"
     },
     {
@@ -64,7 +64,7 @@
     {
       "title": "github",
       "color": "#000000",
-      "url": "https://github.com/NayLo",
+      "url": "https://github.com/K1yoyo",
       "icon": "github"
     },
     {
@@ -76,7 +76,7 @@
     {
       "title": "email",
       "color": "#fd3232",
-      "url": "shimarinqwq@gmail.com",
+      "url": "mailto:shimarinqwq@gmail.com",
       "icon": "email"
     },
     {
@@ -94,104 +94,45 @@
   ],
   "sites": [
     {
-      "icon": "https://cs.naylo.cn/icons/d5570e8a-a826-47be-91b2-f6949b743111.webp!cover",
-      "title": "NayLoの小世界",
-      "url": "https://naylo.cn",
-      "desc": "博客主页"
+      "icon": "https://s2.loli.net/2025/11/28/7uEbaSvPMsGTUCm.jpg",
+      "title": "NayLo的小世界",
+      "url": "https://twitter.com/naylosuki",
+      "desc": "X主页"
     },
     {
-      "icon": "https://cs.naylo.cn/icons/1419ac35-0a57-4359-bb2f-55a26fc52bd8.png!cover",
-      "title": "Mio 导航",
-      "url": "https://nav.naylo.cn",
-      "desc": "Mio 网站导航"
+      "icon": "https://s2.loli.net/2025/11/28/Ofekpc6HaMAzJry.jpg",
+      "title": "AI 超分辨率",
+      "url": "https://real-cugan.animesales.xyz/",
+      "desc": "AI 超分辨率"
     },
     {
-      "icon": "https://cs.naylo.cn/icons/a8cb45a8-c0ec-41e7-ab8f-ff4fe8817230.jpg!cover",
-      "title": "NayLoのAI",
+      "icon": "https://s2.loli.net/2025/11/28/ONY1jLkXy76fUCi.jpg",
+      "title": "NayLo的AI",
       "url": "https://gemini.google.com/app",
       "desc": "Gemini3.0"
     },
     {
-      "icon": "https://cs.naylo.cn/icons/1419ac35-0a57-4359-bb2f-55a26fc52bd8.png!cover",
-      "title": "NayLoの库",
-      "url": "https://dist.naylo.cn",
-      "desc": "网盘挂载程序"
+      "icon": "https://s2.loli.net/2025/11/28/Tc38jngoRlwUVpq.jpg",
+      "title": "二次元图片检索",
+      "url": "https://saucenao.com/",
+      "desc": "二次元图片检索"
     },
     {
-      "icon": "https://cs.naylo.cn/icons/0d2e7fe7-3cca-4989-9bb4-4a39cee77801.png!cover",
-      "title": "NayLoの图床",
-      "url": "https://upload.naylo.cn",
-      "desc": "图床服务"
-    },
-    {
-      "icon": "https://cs.naylo.cn/icons/d5570e8a-a826-47be-91b2-f6949b743111.webp!cover",
-      "title": "监控服务",
-      "url": "https://status.naylo.cn/status",
-      "desc": "服务程序监控"
-    },
-    {
-      "icon": "https://cs.naylo.cn/icons/d5570e8a-a826-47be-91b2-f6949b743111.webp!cover",
-      "title": "NayLoのDocs",
-      "url": "https://docs.naylo.cn",
-      "desc": "文档服务"
-    },
-    {
-      "icon": "https://cs.naylo.cn/icons/a8cb45a8-c0ec-41e7-ab8f-ff4fe8817230.jpg!cover",
-      "title": "杂七杂八",
-      "desc": "阿巴阿巴..."
-    },
-    {
-      "icon": "https://cs.naylo.cn/icons/1419ac35-0a57-4359-bb2f-55a26fc52bd8.png!cover",
-      "title": "喜好生成表",
-      "url": "https://like.naylo.cn",
-      "desc": "个人喜好生成表"
-    },
-    {
-      "icon": "https://cs.naylo.cn/icons/cbc99c37-af7a-440b-ae17-76befb78042c.webp!cover",
-      "title": "NayLoの次元",
-      "url": "https://hexo.naylo.cn",
-      "desc": "Hexo版本博客程序"
-    },
-    {
-      "icon": "https://cs.naylo.cn/icons/d5570e8a-a826-47be-91b2-f6949b743111.webp!cover",
-      "title": "NayLoの次元",
-      "url": "https://v3.naylo.cn",
-      "desc": "上版本的博客程序(服务关了"
-    },
-    {
-      "icon": "https://cs.naylo.cn/icons/cbc99c37-af7a-440b-ae17-76befb78042c.webp!cover",
-      "title": "NayLoの次元",
-      "url": "https://v2.naylo.cn",
-      "desc": "早期博客主题(v2)"
-    },
-    {
-      "icon": "https://cs.naylo.cn/icons/cbc99c37-af7a-440b-ae17-76befb78042c.webp!cover",
-      "title": "NayLoの次元",
-      "url": "https://v1.naylo.cn",
-      "desc": "早期博客主题(v1)"
-    },
-    {
-      "icon": "https://cs.naylo.cn/icons/cbc99c37-af7a-440b-ae17-76befb78042c.webp!cover",
-      "title": "NayLoの次元",
-      "url": "https://v0.naylo.cn",
-      "desc": "早期博客主题(v0)"
-    },
-    {
-      "icon": "https://cs.naylo.cn/icons/2ccc4639-8fea-455f-a3b0-ef8073869f2a.jpg",
-      "title": "NayLoの导航",
-      "url": "https://pixlips.github.io",
-      "desc": "导航页(beta)"
+      "icon": "https://s2.loli.net/2025/11/28/4s7vGJBzLQcPeNC.jpg",
+      "title": "图片转URL链接",
+      "url": "https://smms.app/",
+      "desc": "图片转URL链接"
     }
   ],
   "sitesConfig": {
-    "hidden": true,
+    "hidden": false,
     "cardStyle": "",
     "hoverBlur": true,
     "hoverScale": true,
     "hoverFlip": true,
     "direction": "row",
     "modal": true,
-    "modalTips": "这里大多都是初学时开发的，算是练手的，技术力不高，看起来也很不好看，算是黑历史，但也算是一段记忆的载体了，所以我想把它保存在此。",
+    "modalTips": "收藏了一些常用的工具和AI服务。",
     "modalTitle": ""
   },
   "socialConfig": {
@@ -262,6 +203,12 @@
     "color": "linear-gradient(to right, #ffafbd 0%, #c9ffbf 100%)",
     "hidden": true,
     "column": 4
+  },
+  "footer": {
+    "text": "©2025 By NayLo",
+    "url": "https://naylo.cn",
+    "direction": "col-reverse",
+    "isExternal": true
   },
   "__footer": {
     "text": "©2025 By NayLo",
