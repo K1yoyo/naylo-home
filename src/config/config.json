@@ -269,7 +269,7 @@
     "ICP": "ICP备xxxxxxxx号",
     "MPSICP": "京公网安备xxxxxxxx号",
     "direction": "col-reverse",
-    "isExternal": true
+    "isExternal": false
   },
   "resources": {
     "css": [],
