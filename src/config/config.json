@@ -100,28 +100,46 @@
       "desc": "X主页"
     },
     {
-      "icon": "icon002.jpg",
+    "icon": "icon003.png", 
+    "title": "常用AI工具",
+    "url": "https://gemini.google.com/app",
+    "desc": "Gemini3.0"
+   },    
+    {
+      "icon": "icon002.ico",
       "title": "AI 超分辨率",
       "url": "https://real-cugan.animesales.xyz/",
       "desc": "Real-CUGAN"
     },
     {
-      "icon": "icon003.jpg",
-      "title": "Gemini",
-      "url": "https://gemini.google.com/app",
-      "desc": "Gemini3.0"
-    },
-    {
-      "icon": "icon004.jpg",
+      "icon": "icon004.ico",
       "title": "二次元图片检索",
       "url": "https://saucenao.com/",
       "desc": "SauceNAO"
     },
     {
-      "icon": "icon005.jpg",
+      "icon": "icon005.ico",
       "title": "图片转URL链接",
       "url": "https://smms.app/",
       "desc": "SM.MS"
+    },
+    {
+      "icon": "icon006.ico",
+      "title": "综合网盘搜索引擎",
+      "url": "https://pan.geekerline.com/",
+      "desc": "Geekerline"
+    },
+    {
+      "icon": "icon007.png",
+      "title": "4K蓝光原盘电影网",
+      "url": "https://www.yinfans.me/",
+      "desc": "Yinfans"
+    },
+    {
+      "icon": "icon008.ico",
+      "title": "字幕网站",
+      "url": "https://assrt.net/",
+      "desc": "射手网"
     }
   ],
   "sitesConfig": {
