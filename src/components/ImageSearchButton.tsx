@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
+// 引入动画库
+import { motion } from "framer-motion";
 
 const ENGINES = [
   {
@@ -92,15 +94,20 @@ export default function ImageSearchButton() {
   };
 
   return (
-    // ✨ 外层容器：高通透水晶风格 (修复了日间模式太白的问题)
-    <div className="w-full group relative overflow-hidden rounded-2xl border transition-all hover:shadow-sm backdrop-blur-md
-      bg-white/30 border-white/30 
+    // ✨ 修改了这里：纯粹的“从无到有”渐变动画
+    <motion.div 
+      initial={{ opacity: 0 }}        // 初始：完全看不见 (透明度 0)
+      animate={{ opacity: 1 }}        // 结束：完全看得见 (透明度 1)
+      transition={{ duration: 0.8, delay: 0.2 }} // 过程：持续 0.8秒，慢慢浮现
+      className="w-full group relative overflow-hidden rounded-2xl border transition-all hover:shadow-sm backdrop-blur-md
+      bg-white/20 border-white/30 
       dark:bg-black/20 dark:border-white/10
-      hover:bg-white/40 dark:hover:bg-black/30">
+      hover:bg-white/30 dark:hover:bg-black/30"
+    >
       
       <div className="flex flex-col sm:flex-row items-center p-3 gap-3">
         
-        {/* 左侧图标底座 */}
+        {/* 左侧图标 */}
         <div className="flex-shrink-0">
            <div className="h-12 w-12 rounded-full flex items-center justify-center border transition-colors
              bg-white/40 border-white/40 text-gray-700
@@ -111,50 +118,58 @@ export default function ImageSearchButton() {
 
         {/* 中间控制区 */}
         <div className="flex-1 w-full min-w-0 flex flex-col gap-2">
-            {/* 上传条 */}
             <label className="relative flex items-center gap-3 cursor-pointer group/label select-none">
                 <input type="file" className="hidden" accept="image/*" onChange={handleFileChange} />
                 
                 {previewUrl ? (
                     <div className="flex items-center gap-3 w-full">
-                         <div className="h-8 w-8 rounded-lg overflow-hidden border border-black/5 dark:border-white/20 shadow-sm">
+                         <div className="h-8 w-8 rounded-lg overflow-hidden border shadow-sm
+                           border-white/40 dark:border-white/20">
                              <img src={previewUrl} className="h-full w-full object-cover" />
                          </div>
-                         <span className="text-sm font-medium truncate text-gray-800 dark:text-gray-200">
+                         <span className="text-sm font-medium truncate 
+                           text-gray-800 dark:text-gray-200">
                            {selectedFile?.name}
                          </span>
-                         <span className="text-xs transition text-gray-500 hover:text-black dark:text-gray-500 dark:hover:text-gray-300">
+                         <span className="text-xs transition 
+                           text-gray-600 hover:text-black 
+                           dark:text-gray-500 dark:hover:text-gray-300">
                            (更换)
                          </span>
                     </div>
                 ) : (
                     <div className="flex items-center gap-2 w-full">
-                         <span className="text-sm font-bold transition text-gray-700 group-hover/label:text-black dark:text-gray-200 dark:group-hover/label:text-white">
+                         <span className="text-sm font-bold transition 
+                           text-gray-800 group-hover/label:text-black
+                           dark:text-gray-200 dark:group-hover/label:text-white">
                            点击上传图片
                          </span>
-                         <span className="text-xs transition text-gray-500 group-hover/label:text-gray-500 dark:text-gray-500 dark:group-hover/label:text-gray-400">
+                         <span className="text-xs transition 
+                           text-gray-600 group-hover/label:text-gray-800
+                           dark:text-gray-500 dark:group-hover/label:text-gray-400">
                            JPG / PNG
                          </span>
                     </div>
                 )}
             </label>
 
-            {/* 引擎选择 & 状态 */}
             <div className="flex items-center gap-2">
                 <select 
                     value={selectedEngine}
                     onChange={(e) => setSelectedEngine(e.target.value)}
-                    className="bg-transparent text-xs cursor-pointer focus:outline-none transition border-none p-0 pr-4 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white"
+                    className="bg-transparent text-xs cursor-pointer focus:outline-none transition border-none p-0 pr-4 
+                      text-gray-600 hover:text-black
+                      dark:text-gray-400 dark:hover:text-white"
                 >
                      {ENGINES.map(e => (
-                       <option key={e.id} value={e.id} className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200">
+                       <option key={e.id} value={e.id} className="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-200">
                          {e.name}
                        </option>
                      ))}
                 </select>
                 
                 {(loading || error) && (
-                    <span className={`text-xs ${error ? 'text-red-500 dark:text-red-400' : 'text-blue-500 dark:text-blue-400 animate-pulse'}`}>
+                    <span className={`text-xs ${error ? 'text-red-600 dark:text-red-400' : 'text-blue-600 dark:text-blue-400 animate-pulse'}`}>
                         {error || statusMsg}
                     </span>
                 )}
@@ -168,7 +183,9 @@ export default function ImageSearchButton() {
             className={`flex-shrink-0 h-10 px-5 rounded-xl font-bold text-sm transition-all flex items-center justify-center border
                 ${!selectedFile 
                     ? "bg-black/5 text-gray-400 border-transparent cursor-not-allowed dark:bg-white/5 dark:text-gray-600" 
-                    : "shadow-sm active:scale-95 bg-white/50 border-white/60 hover:bg-white text-gray-800 dark:bg-white/10 dark:border-white/5 dark:hover:bg-white/20 dark:text-white"
+                    : "shadow-sm active:scale-95 \
+                       bg-white/60 border-white/60 hover:bg-white text-gray-800 \
+                       dark:bg-white/10 dark:border-white/10 dark:hover:bg-white/20 dark:text-white"
                 }
             `}
         >
@@ -180,6 +197,6 @@ export default function ImageSearchButton() {
         </button>
 
       </div>
-    </div>
+    </motion.div>
   );
 }
