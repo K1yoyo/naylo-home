@@ -103,11 +103,11 @@
       "icon": "https://s2.loli.net/2025/11/28/Ofekpc6HaMAzJry.jpg",
       "title": "AI 超分辨率",
       "url": "https://real-cugan.animesales.xyz/",
-      "desc": "AI 超分辨率"
+      "desc": "Real-CUGAN"
     },
     {
       "icon": "https://s2.loli.net/2025/11/28/ONY1jLkXy76fUCi.jpg",
-      "title": "NayLo的AI",
+      "title": "Gemini",
       "url": "https://gemini.google.com/app",
       "desc": "Gemini3.0"
     },
@@ -115,13 +115,13 @@
       "icon": "https://s2.loli.net/2025/11/28/Tc38jngoRlwUVpq.jpg",
       "title": "二次元图片检索",
       "url": "https://saucenao.com/",
-      "desc": "二次元图片检索"
+      "desc": "SauceNAO"
     },
     {
       "icon": "https://s2.loli.net/2025/11/28/4s7vGJBzLQcPeNC.jpg",
       "title": "图片转URL链接",
       "url": "https://smms.app/",
-      "desc": "图片转URL链接"
+      "desc": "SM.MS"
     }
   ],
   "sitesConfig": {
