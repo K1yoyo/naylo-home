@@ -94,31 +94,31 @@
   ],
   "sites": [
     {
-      "icon": "https://s2.loli.net/2025/11/28/7uEbaSvPMsGTUCm.jpg",
+      "icon": "icon001.jpg",
       "title": "NayLo的小世界",
       "url": "https://twitter.com/naylosuki",
       "desc": "X主页"
     },
     {
-      "icon": "https://s2.loli.net/2025/11/28/Ofekpc6HaMAzJry.jpg",
+      "icon": "icon002.jpg",
       "title": "AI 超分辨率",
       "url": "https://real-cugan.animesales.xyz/",
       "desc": "Real-CUGAN"
     },
     {
-      "icon": "https://s2.loli.net/2025/11/28/ONY1jLkXy76fUCi.jpg",
+      "icon": "icon003.jpg",
       "title": "Gemini",
       "url": "https://gemini.google.com/app",
       "desc": "Gemini3.0"
     },
     {
-      "icon": "https://s2.loli.net/2025/11/28/Tc38jngoRlwUVpq.jpg",
+      "icon": "icon004.jpg",
       "title": "二次元图片检索",
       "url": "https://saucenao.com/",
       "desc": "SauceNAO"
     },
     {
-      "icon": "https://s2.loli.net/2025/11/28/4s7vGJBzLQcPeNC.jpg",
+      "icon": "icon005.jpg",
       "title": "图片转URL链接",
       "url": "https://smms.app/",
       "desc": "SM.MS"
