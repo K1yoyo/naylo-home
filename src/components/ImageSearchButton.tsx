@@ -5,33 +5,33 @@ import React, { useState } from "react";
 const ENGINES = [
   {
     id: "google_lens",
-    name: "Google Lens (以图搜图)",
+    name: "Google Lens",
     type: "url",
-    urlTemplate: "https://lens.google.com/upload?url={url}"
+    urlTemplate: "https://lens.google.com/upload?url={url}",
   },
   {
     id: "saucenao_url",
-    name: "SauceNAO (跳转官网)",
+    name: "SauceNAO",
     type: "url",
-    urlTemplate: "https://saucenao.com/search.php?db=999&url={url}"
+    urlTemplate: "https://saucenao.com/search.php?db=999&url={url}",
   },
   {
     id: "yandex_url",
-    name: "Yandex (高清大图)",
+    name: "Yandex",
     type: "url",
-    urlTemplate: "https://yandex.com/images/search?rpt=imageview&url={url}"
+    urlTemplate: "https://yandex.com/images/search?rpt=imageview&url={url}",
   },
   {
     id: "ascii2d_url",
-    name: "Ascii2d (色调搜索)",
+    name: "Ascii2d",
     type: "url",
-    urlTemplate: "https://ascii2d.net/search/url/{url}"
+    urlTemplate: "https://ascii2d.net/search/url/{url}",
   },
   {
     id: "iqdb_url",
-    name: "IQDB (多站聚合)",
+    name: "IQDB",
     type: "url",
-    urlTemplate: "https://iqdb.org/?url={url}"
+    urlTemplate: "https://iqdb.org/?url={url}",
   },
 ];
 
@@ -42,51 +42,6 @@ export default function ImageSearchButton() {
   const [selectedEngine, setSelectedEngine] = useState(ENGINES[0].id);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-
-  // 🖼️ 辅助函数：前端压缩图片 (核心黑科技)
-  const compressImage = async (file: File): Promise<Blob> => {
-    return new Promise((resolve, reject) => {
-      // 1. 如果图片本来就很小 (小于 1MB)，直接放行
-      if (file.size < 1024 * 1024) {
-        resolve(file);
-        return;
-      }
-
-      const img = new Image();
-      img.src = URL.createObjectURL(file);
-      img.onload = () => {
-        const canvas = document.createElement("canvas");
-        // 2. 限制最大边长为 1920px (既保证清晰度，又大幅减小体积)
-        const MAX_SIZE = 1920; 
-        let width = img.width;
-        let height = img.height;
-
-        if (width > height) {
-          if (width > MAX_SIZE) {
-            height *= MAX_SIZE / width;
-            width = MAX_SIZE;
-          }
-        } else {
-          if (height > MAX_SIZE) {
-            width *= MAX_SIZE / height;
-            height = MAX_SIZE;
-          }
-        }
-
-        canvas.width = width;
-        canvas.height = height;
-        const ctx = canvas.getContext("2d");
-        ctx?.drawImage(img, 0, 0, width, height);
-
-        // 3. 压缩为 JPEG，质量 0.8
-        canvas.toBlob((blob) => {
-          if (blob) resolve(blob);
-          else reject(new Error("图片压缩失败"));
-        }, "image/jpeg", 0.8);
-      };
-      img.onerror = (err) => reject(err);
-    });
-  };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -106,95 +61,125 @@ export default function ImageSearchButton() {
     setError("");
 
     try {
-        setStatusMsg("1/3 正在压缩优化图片...");
-        
-        // ✨ 第一步：先在浏览器里把图片变小
-        const compressedBlob = await compressImage(selectedFile);
-        
-        setStatusMsg("2/3 正在上传图片...");
-
-        // ✨ 第二步：上传压缩后的小图
-        const uploadForm = new FormData();
-        // 注意：这里必须给 Blob 一个文件名，否则后端可能不认
-        uploadForm.append("file", compressedBlob, "compressed_image.jpg");
-
-        const uploadRes = await fetch("/api/upload", { method: "POST", body: uploadForm });
-        
-        // 尝试解析错误信息
-        let uploadData;
-        try {
-            uploadData = await uploadRes.json();
-        } catch (e) {
-            throw new Error(`上传接口返回了非 JSON 数据 (${uploadRes.status})`);
-        }
-
-        if (!uploadRes.ok || !uploadData.url) {
-          throw new Error(uploadData.error || `上传失败: ${uploadRes.status}`);
-        }
-
-        const imageUrl = uploadData.url;
-        setStatusMsg("3/3 正在跳转...");
-
-        // ✨ 第三步：跳转
-        const targetUrl = engine.urlTemplate.replace("{url}", encodeURIComponent(imageUrl));
-
-        setTimeout(() => {
-          window.open(targetUrl, "_blank");
-          setLoading(false);
-          setStatusMsg("");
-        }, 500);
-
+      setStatusMsg("上传中...");
+      const uploadForm = new FormData();
+      uploadForm.append("file", selectedFile);
+      const uploadRes = await fetch("/api/upload", {
+        method: "POST",
+        body: uploadForm,
+      });
+      const uploadData = await uploadRes.json();
+      if (!uploadRes.ok || !uploadData.url) {
+        throw new Error(uploadData.error || "上传失败");
+      }
+      const imageUrl = uploadData.url;
+      const targetUrl = engine.urlTemplate.replace(
+        "{url}",
+        encodeURIComponent(imageUrl)
+      );
+      setStatusMsg("跳转中...");
+      setTimeout(() => {
+        window.open(targetUrl, "_blank");
+        setLoading(false);
+        setStatusMsg("");
+      }, 300);
     } catch (err: any) {
       console.error(err);
-      setError(err.message || "请求失败");
+      setError("失败");
       setLoading(false);
+      setTimeout(() => setError(""), 2000);
     }
   };
 
   return (
-    <div className="w-full bg-white/50 dark:bg-black/20 backdrop-blur-sm rounded-xl p-4 border border-gray-200 dark:border-gray-700">
-      <div className="flex flex-col md:flex-row gap-3 items-stretch md:items-center">
-        <label className="flex-1 cursor-pointer flex items-center justify-center gap-2 px-4 py-2 border-2 border-dashed border-gray-300 hover:border-blue-400 rounded-lg bg-white/50 dark:bg-gray-800 transition min-h-[44px]">
-          <input type="file" className="hidden" accept="image/*" onChange={handleFileChange} />
-          {previewUrl ? (
-            <img src={previewUrl} alt="Preview" className="h-8 w-8 object-cover rounded-md" />
-          ) : (
-            <span className="text-xl">📁</span>
-          )}
-          <span className="text-sm text-gray-600 dark:text-gray-300 truncate max-w-[120px]">
-            {selectedFile ? selectedFile.name : "选择图片"}
-          </span>
-        </label>
-
-        <select
-          value={selectedEngine}
-          onChange={(e) => setSelectedEngine(e.target.value)}
-          className="px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[44px]"
-        >
-          {ENGINES.map((e) => (
-            <option key={e.id} value={e.id}>{e.name}</option>
-          ))}
-        </select>
-
-        <button
-          onClick={handleSearch}
-          disabled={!selectedFile || loading}
-          className={`px-6 py-2 rounded-lg text-white font-bold text-sm transition shadow-lg min-h-[44px] whitespace-nowrap
-            ${!selectedFile
-              ? "bg-gray-400 cursor-not-allowed"
-              : "bg-blue-500 hover:bg-blue-600 active:scale-95"
-            }`}
-        >
-          {loading ? "处理中..." : "Go 🚀"}
-        </button>
-      </div>
-
-      {(loading || error || statusMsg) && (
-        <div className="mt-3 text-center">
-             {loading && <span className="text-blue-500 text-sm animate-pulse">⏳ {statusMsg}</span>}
-             {error && <span className="text-red-500 text-sm font-bold">❌ {error}</span>}
+    // ✨ 外层容器：高通透水晶风格 (修复了日间模式太白的问题)
+    <div className="w-full group relative overflow-hidden rounded-2xl border transition-all hover:shadow-sm backdrop-blur-md
+      bg-white/30 border-white/30 
+      dark:bg-black/20 dark:border-white/10
+      hover:bg-white/40 dark:hover:bg-black/30">
+      
+      <div className="flex flex-col sm:flex-row items-center p-3 gap-3">
+        
+        {/* 左侧图标底座 */}
+        <div className="flex-shrink-0">
+           <div className="h-12 w-12 rounded-full flex items-center justify-center border transition-colors
+             bg-white/40 border-white/40 text-gray-700
+             dark:bg-white/5 dark:border-white/10 dark:text-gray-200">
+              <span className="text-xl">🔍</span>
+           </div>
         </div>
-      )}
+
+        {/* 中间控制区 */}
+        <div className="flex-1 w-full min-w-0 flex flex-col gap-2">
+            {/* 上传条 */}
+            <label className="relative flex items-center gap-3 cursor-pointer group/label select-none">
+                <input type="file" className="hidden" accept="image/*" onChange={handleFileChange} />
+                
+                {previewUrl ? (
+                    <div className="flex items-center gap-3 w-full">
+                         <div className="h-8 w-8 rounded-lg overflow-hidden border border-black/5 dark:border-white/20 shadow-sm">
+                             <img src={previewUrl} className="h-full w-full object-cover" />
+                         </div>
+                         <span className="text-sm font-medium truncate text-gray-800 dark:text-gray-200">
+                           {selectedFile?.name}
+                         </span>
+                         <span className="text-xs transition text-gray-500 hover:text-black dark:text-gray-500 dark:hover:text-gray-300">
+                           (更换)
+                         </span>
+                    </div>
+                ) : (
+                    <div className="flex items-center gap-2 w-full">
+                         <span className="text-sm font-bold transition text-gray-700 group-hover/label:text-black dark:text-gray-200 dark:group-hover/label:text-white">
+                           点击上传图片
+                         </span>
+                         <span className="text-xs transition text-gray-500 group-hover/label:text-gray-500 dark:text-gray-500 dark:group-hover/label:text-gray-400">
+                           JPG / PNG
+                         </span>
+                    </div>
+                )}
+            </label>
+
+            {/* 引擎选择 & 状态 */}
+            <div className="flex items-center gap-2">
+                <select 
+                    value={selectedEngine}
+                    onChange={(e) => setSelectedEngine(e.target.value)}
+                    className="bg-transparent text-xs cursor-pointer focus:outline-none transition border-none p-0 pr-4 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white"
+                >
+                     {ENGINES.map(e => (
+                       <option key={e.id} value={e.id} className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200">
+                         {e.name}
+                       </option>
+                     ))}
+                </select>
+                
+                {(loading || error) && (
+                    <span className={`text-xs ${error ? 'text-red-500 dark:text-red-400' : 'text-blue-500 dark:text-blue-400 animate-pulse'}`}>
+                        {error || statusMsg}
+                    </span>
+                )}
+            </div>
+        </div>
+
+        {/* 右侧按钮 */}
+        <button
+            onClick={handleSearch}
+            disabled={!selectedFile || loading}
+            className={`flex-shrink-0 h-10 px-5 rounded-xl font-bold text-sm transition-all flex items-center justify-center border
+                ${!selectedFile 
+                    ? "bg-black/5 text-gray-400 border-transparent cursor-not-allowed dark:bg-white/5 dark:text-gray-600" 
+                    : "shadow-sm active:scale-95 bg-white/50 border-white/60 hover:bg-white text-gray-800 dark:bg-white/10 dark:border-white/5 dark:hover:bg-white/20 dark:text-white"
+                }
+            `}
+        >
+            {loading ? (
+                <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+            ) : (
+                "Go"
+            )}
+        </button>
+
+      </div>
     </div>
   );
 }

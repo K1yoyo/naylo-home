@@ -3,7 +3,7 @@
  * @Date: 2024-05-31 13:22:52
  * @LastEditors: kasuie
  * @LastEditTime: 2025-02-22 19:54:25
- * @Description:
+ * @Description: Added ImageSearchButton
  */
 import { HTMLAttributes } from "react";
 import { clsx } from "@kasuie/utils";
@@ -22,6 +22,9 @@ import { TextEffect } from "../effect/TextEffect";
 import { SocialIcons } from "../social-icons/SocialIcons";
 import { Links } from "../links/Links";
 import { Sliders } from "../sliders/Sliders";
+// 👇 1. 引入搜图组件
+import ImageSearchButton from "@/components/ImageSearchButton";
+
 interface VerticalProps extends HTMLAttributes<HTMLDivElement> {
   gapSize: string;
   name: string;
@@ -85,16 +88,24 @@ export function Vertical({
           style={""}
         />
       )}
+      
       <TextEffect
         {...subTitleConfig}
         motions={getMotion(0.1, 1, 0.2, istTransition)}
         text={subTitle}
       ></TextEffect>
+      
       <SocialIcons
         {...socialConfig}
         motions={getMotion(0.1, 2, 0.2, istTransition)}
         links={links}
       />
+
+      {/* 👇 2. 在这里插入搜图组件 (位于 SocialIcons 下面，Links 上面) */}
+      <div className="w-full max-w-2xl px-4 mt-2 mb-2">
+        <ImageSearchButton />
+      </div>
+
       {!sitesConfig?.hidden && (
         <Links
           sitesConfig={sitesConfig}
@@ -105,6 +116,7 @@ export function Vertical({
           cardOpacity={cardOpacity}
         />
       )}
+      
       {!sliders?.hidden && (
         <Sliders
           motions={getMotion(0.1, 4, 0.2, istTransition)}
