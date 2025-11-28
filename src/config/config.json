@@ -106,13 +106,13 @@
     "desc": "Gemini3.0"
    },    
     {
-      "icon": "icon002.jpg",
+      "icon": "icon002.ico",
       "title": "AI 超分辨率",
       "url": "https://real-cugan.animesales.xyz/",
       "desc": "Real-CUGAN"
     },
     {
-      "icon": "icon004.ico",
+      "icon": "icon002.jpg",
       "title": "壁纸网站",
       "url": "https://wallhaven.cc/",
       "desc": "Wallhaven"
