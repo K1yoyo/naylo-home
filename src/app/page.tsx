@@ -5,6 +5,7 @@
  * @LastEditTime: 2025-04-17 16:44:07
  * @Description:
  */
+
 import { Loader } from "@/components/ui/loader/Loader";
 import { Suspense } from "react";
 import { getConfig, getDbConfig, transformConfig } from "@/lib/config";
@@ -14,8 +15,8 @@ import { Footer } from "@/components/layout/Footer";
 import dynamic from "next/dynamic";
 import { Controller } from "@/components/controller/Controller";
 import { Weather } from "@/components/weather/Weather";
+import ImageSearchButton from '@/components/ImageSearchButton';
 import { pg } from "@/lib/db";
-
 export const revalidate = 0;
 
 const Horizontal = dynamic(
@@ -52,7 +53,7 @@ export default async function Home() {
     }
   };
 
-  return (
+return (
     <Suspense
       fallback={
         <Loader warpClass="h-screen bg-black" miao>
@@ -61,6 +62,7 @@ export default async function Home() {
       }
     >
       {globalStyle?.weather && <Weather size={18} />}
+      
       {renderMain({
         ...others,
         footers,
@@ -70,6 +72,11 @@ export default async function Home() {
         modalSites,
         style: varStyle,
       })}
+
+      <div className="relative z-30 container mx-auto px-4 mt-0 mb-10 pb-10 max-w-2xl">
+        <ImageSearchButton />
+      </div>
+
       <MainEffect
         bgArr={bgConfig.bgs}
         mbgArr={bgConfig.mbgs}
